@@ -18,7 +18,9 @@ We've created a quick little "API server" on [Google's Firebase Platform](https:
     "meals": {
       ".read": true
     },
-
+    "notifications": {
+      ".read": true
+    },
     "recipes": {
       ".read": true,
     	".indexOn": ["category"]

@@ -75,9 +75,10 @@ export function setError(message) {
   * Get Recipes
   */
 export function getRecipes() {
+  console.log("calling get recipes");
   if (Firebase === null) return () => new Promise(resolve => resolve());
 
-  return dispatch => new Promise(resolve => FirebaseRef.child('recipes')
+  return dispatch => new Promise(resolve => FirebaseRef.child('notifications')
     .on('value', (snapshot) => {
       const recipes = snapshot.val() || {};
 
