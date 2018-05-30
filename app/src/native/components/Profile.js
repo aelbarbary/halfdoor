@@ -26,6 +26,14 @@ const Profile = ({ member, logout }) => (
                 <Text>Update My Profile</Text>
               </Body>
             </ListItem>
+            <ListItem onPress={Actions.updateProfile} icon>
+              <Left>
+                <Icon name="add" />
+              </Left>
+              <Body>
+                <Text>Register a new Lock</Text>
+              </Body>
+            </ListItem>
             <ListItem onPress={logout} icon>
               <Left>
                 <Icon name="power" />

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FlatList, TouchableOpacity, RefreshControl, Image } from 'react-native';
-import { Container, Content, Card, CardItem, Body, Text, Button } from 'native-base';
+import { Container, Content, Card, CardItem, Body, Text, Button, View } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Loading from './Loading';
 import Error from './Error';
@@ -28,7 +28,7 @@ const RecipeListing = ({
     <Container>
       <Content padder>
         <Header
-          title="Top Recipes"
+          title="Notifications"
           content="This is here to show how you can read and display data from a data source (in our case, Firebase)."
         />
 
@@ -53,16 +53,27 @@ const RecipeListing = ({
               <CardItem cardBody>
                 <Body>
                   <Spacer size={10} />
-                  <Text style={{ fontWeight: '800' }}>{item.title}</Text>
+                  <Text style={{ fontWeight: '800' }}>1/6/2018</Text>
                   <Spacer size={15} />
-                  <Button
-                    block
-                    bordered
-                    small
-                    onPress={() => onPress(item)}
-                  >
-                    <Text>View Recipe</Text>
-                  </Button>
+                  <View style={{flex: 1, flexDirection: 'row'}}>
+                    <Button
+                      block
+                      bordered
+                      small
+                      onPress={() => onPress(item)}
+                    >
+                      <Text>Details</Text>
+                    </Button>
+                    <Button
+                      block
+                      bordered
+                      small
+                      onPress={() => onPress(item)}
+                    >
+                      <Text>Unlock</Text>
+                    </Button>
+                  </View>
+
                   <Spacer size={5} />
                 </Body>
               </CardItem>
