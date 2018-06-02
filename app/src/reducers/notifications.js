@@ -1,8 +1,8 @@
-import Store from '../store/recipes';
+import Store from '../store/notifications';
 
 export const initialState = Store;
 
-export default function recipeReducer(state = initialState, action) {
+export default function notificationReducer(state = initialState, action) {
   switch (action.type) {
     case 'FAVOURITES_REPLACE': {
       return {
@@ -18,18 +18,18 @@ export default function recipeReducer(state = initialState, action) {
         meals: action.data,
       };
     }
-    case 'RECIPES_ERROR': {
+    case 'NOTIFICATIONS_ERROR': {
       return {
         ...state,
         error: action.data,
       };
     }
-    case 'RECIPES_REPLACE': {
-      let recipes = [];
+    case 'NOTIFICATIONS_REPLACE': {
+      let notifications = [];
 
       // Pick out the props I need
       if (action.data && typeof action.data === 'object') {
-        recipes = action.data.map(item => ({
+        notifications = action.data.map(item => ({
           id: item.id,
           title: item.title,
           body: item.body,
@@ -45,7 +45,7 @@ export default function recipeReducer(state = initialState, action) {
         ...state,
         error: null,
         loading: false,
-        recipes,
+        notifications,
       };
     }
     default:

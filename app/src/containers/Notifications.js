@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getRecipes, getMeals, setError } from '../actions/recipes';
+import { getNotifications, getMeals, setError } from '../actions/notifications';
 
-class RecipeListing extends Component {
+class NotificationListing extends Component {
   static propTypes = {
     Layout: PropTypes.func.isRequired,
-    recipes: PropTypes.shape({
+    notifications: PropTypes.shape({
       loading: PropTypes.bool.isRequired,
       error: PropTypes.string,
-      recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+      notifications: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     }).isRequired,
     match: PropTypes.shape({
       params: PropTypes.shape({}),
     }),
-    getRecipes: PropTypes.func.isRequired,
+    getNotifications: PropTypes.func.isRequired,
     getMeals: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
   }
@@ -24,13 +24,13 @@ class RecipeListing extends Component {
     match: null,
   }
 
-  componentDidMount = () => this.fetchRecipes();
+  componentDidMount = () => this.fetchNotifications();
 
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchRecipes = () => {
-    return this.props.getRecipes()
+  fetchNotifications = () => {
+    return this.props.getNotifications()
       .then(() => this.props.getMeals())
       .catch((err) => {
         console.log(`Error: ${err}`);
@@ -39,29 +39,29 @@ class RecipeListing extends Component {
   }
 
   render = () => {
-    const { Layout, recipes, match } = this.props;
+    const { Layout, notifications, match } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
 
     return (
       <Layout
-        recipeId={id}
-        error={recipes.error}
-        loading={recipes.loading}
-        recipes={recipes.recipes}
-        reFetch={() => this.fetchRecipes()}
+        notificationId={id}
+        error={notifications.error}
+        loading={notifications.loading}
+        notifications={notifications.notifications}
+        reFetch={() => this.fetchNotifications()}
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  recipes: state.recipes || {},
+  notifications: state.notifications || {},
 });
 
 const mapDispatchToProps = {
-  getRecipes,
+  getNotifications,
   getMeals,
   setError,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipeListing);
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationListing);

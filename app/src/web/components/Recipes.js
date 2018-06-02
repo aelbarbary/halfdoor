@@ -12,12 +12,12 @@ import {
 import { Link } from 'react-router-dom';
 import Error from './Error';
 
-const RecipeListing = ({ error, loading, recipes }) => {
+const NotificationListing = ({ error, loading, notifications }) => {
   // Error
   if (error) return <Error content={error} />;
 
   // Build Cards for Listing
-  const cards = recipes.map(item => (
+  const cards = notifications.map(item => (
     <Card key={`${item.id}`}>
       <Link to={`/recipe/${item.id}`}>
         <CardImg top src={item.image} alt={item.title} />
@@ -25,7 +25,7 @@ const RecipeListing = ({ error, loading, recipes }) => {
       <CardBody>
         <CardTitle>{item.title}</CardTitle>
         <CardText>{item.body}</CardText>
-        <Link className="btn btn-primary" to={`/recipe/${item.id}`}>View Recipe <i className="icon-arrow-right" /></Link>
+        <Link className="btn btn-primary" to={`/notification/${item.id}`}>View Recipe <i className="icon-arrow-right" /></Link>
       </CardBody>
     </Card>
   ));
@@ -35,7 +35,7 @@ const RecipeListing = ({ error, loading, recipes }) => {
     <div>
       <Row>
         <Col sm="12">
-          <h1>Recipes</h1>
+          <h1>Notifications</h1>
           <p>The following data is read directly from Firebase.</p>
         </Col>
       </Row>
@@ -48,14 +48,14 @@ const RecipeListing = ({ error, loading, recipes }) => {
   );
 };
 
-RecipeListing.propTypes = {
+NotificationListing.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-RecipeListing.defaultProps = {
+NotificationListing.defaultProps = {
   error: null,
 };
 
-export default RecipeListing;
+export default NotificationListing;

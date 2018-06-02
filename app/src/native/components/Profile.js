@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Container, Content, List, ListItem, Body, Left, Text, Icon } from 'native-base';
+// import {SocialIcon} from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import Header from './Header';
 
@@ -57,9 +58,20 @@ const Profile = ({ member, logout }) => (
                 <Icon name="power" />
               </Left>
               <Body>
-                <Text>Login</Text>
+                <Text>Login with Username</Text>
               </Body>
             </ListItem>
+            {/* <ListItem onPress={Actions.googleLogin} icon>
+              <Left>
+                <SocialIcon
+  button
+  type='facebook'
+/>
+              </Left>
+              <Body>
+                <Text>Login with Google</Text>
+              </Body>
+            </ListItem> */}
             <ListItem onPress={Actions.signUp} icon>
               <Left>
                 <Icon name="add-circle" />

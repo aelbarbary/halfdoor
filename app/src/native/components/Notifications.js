@@ -8,10 +8,10 @@ import Error from './Error';
 import Header from './Header';
 import Spacer from './Spacer';
 
-const RecipeListing = ({
+const NotificationListing = ({
   error,
   loading,
-  recipes,
+  notifications,
   reFetch,
 }) => {
   // Loading
@@ -22,7 +22,7 @@ const RecipeListing = ({
 
   const keyExtractor = item => item.id;
 
-  const onPress = item => Actions.recipe({ match: { params: { id: String(item.id) } } });
+  const onPress = item => Actions.notification({ match: { params: { id: String(item.id) } } });
 
   return (
     <Container>
@@ -34,7 +34,7 @@ const RecipeListing = ({
 
         <FlatList
           numColumns={2}
-          data={recipes}
+          data={notifications}
           renderItem={({ item }) => (
             <Card transparent style={{ paddingHorizontal: 6 }}>
               <CardItem cardBody>
@@ -94,16 +94,16 @@ const RecipeListing = ({
   );
 };
 
-RecipeListing.propTypes = {
+NotificationListing.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  notifications: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   reFetch: PropTypes.func,
 };
 
-RecipeListing.defaultProps = {
+NotificationListing.defaultProps = {
   error: null,
   reFetch: null,
 };
 
-export default RecipeListing;
+export default NotificationListing;
